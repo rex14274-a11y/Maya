@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace "com.maya.app"
+    compileSdk 34
+    defaultConfig {
+        applicationId "com.maya.app"
+        minSdk 28
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.5.3'
+    }
+    packagingOptions {
+        jniLibs {
+            pickFirsts += ["**/libc++_shared.so"]
+        }
+    }
+}
+
+dependencies {
+    implementation "androidx.compose.ui:ui:1.5.4"
+    implementation "androidx.compose.material3:material3:1.1.2"
+    implementation "androidx.lifecycle:lifecycle-service:2.7.0"
+    implementation "androidx.room:room-runtime:2.6.1"
+    kapt "androidx.room:room-compiler:2.6.1"
+    implementation "net.zetetic:sqlcipher-android:4.5.4"
+    implementation "androidx.security:security-crypto:1.1.0-alpha06"
+    implementation "ai.picovoice:porcupine-android:2.2.1"
+    implementation "androidx.core:core-splashscreen:1.0.1"
+}
